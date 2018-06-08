@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+	<p:layout fullPage="true">
+		<p:layoutUnit position="north" header="JSF, Primefaces e Hibernate">
+			<h:outputText value="Projeto Controle de Produtos" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" header="Menu de Opções"
+			collapsible="true">
+			<h:outputText value="Selecione a operação desejada" />
+			<h:form>
+				<p:panelMenu>
+					<p:submenu label="Manter Produto">
+						<p:menuitem value="Cadastrar novo Produto"
+							onclick="PF('janelacadastro').show()" />
+						<p:menuitem value="Gráfico dos Produtos"
+							onclick="PF('janelagrafico').show()" />
+					</p:submenu>
+				</p:panelMenu>
+			</h:form>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center" header="Listagem dos  produtos">
+			<h:form>
+			
+				<p:dataTable emptyMessage="Não há produtos cadastrados." >
+				</p:dataTable>
+
+				<p:commandButton value="Exibir relatório dos produtos" />
+
+			</h:form>
+
+		</p:layoutUnit>
+	</p:layout>
+
+
+	<p:dialog widgetVar="janelacadastro" header="Cadastro do Produto" modal="true" showEffect="explode">
+		<h:form id="formcadastro">
+			<h:panelGrid columns="2">
+
+				<p:outputLabel value="Data Fabricação" />
+				<p:calendar />
+
+				<p:outputLabel value="Produto:" />
+				<p:inputText />
+
+				<p:outputLabel value="Selecione o departamento" />
+				<p:selectOneMenu>
+					<f:selectItem itemLabel="Roupas" itemValue="roupas" />
+					<f:selectItem itemLabel="Calçados" itemValue="calçados" />
+					<f:selectItem itemLabel="Acessórios" itemValue="acessórios" />
+				</p:selectOneMenu>
+
+			</h:panelGrid>
+			<p:commandButton value="Cadastrar Produto" />
+			<p:message for="formcadastro" />
+			<p:growl />
+		</h:form>
+	</p:dialog>
+	
+	<p:dialog widgetVar="janelagrafico" header="Gráfico dos Produtos" modal="true">
+		
+	</p:dialog>
+
+
+</h:body>
+</html>
