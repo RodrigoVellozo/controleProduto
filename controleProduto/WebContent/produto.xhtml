@@ -14,6 +14,7 @@
 		<p:layoutUnit position="west" header="Menu de Opções"
 			collapsible="true">
 			<h:outputText value="Selecione a operação desejada" />
+			<br/><br/>
 			<h:form>
 				<p:panelMenu>
 					<p:submenu label="Manter Produto">
@@ -45,20 +46,23 @@
 			<h:panelGrid columns="2">
 
 				<p:outputLabel value="Data Fabricação" />
-				<p:calendar />
+				<p:calendar value="#{mbProduto.produto.dataFabricacao}" />
 
 				<p:outputLabel value="Produto:" />
-				<p:inputText />
+				<p:inputText value="#{mbProduto.produto.nome}"/>
+				
+				<p:outputLabel value="Quantidade"/>
+				<p:inputText type="number" value="#{mbProduto.produto.quantidade}"/>
 
 				<p:outputLabel value="Selecione o departamento" />
-				<p:selectOneMenu>
+				<p:selectOneMenu value="#{mbProduto.produto.departamento}">
 					<f:selectItem itemLabel="Roupas" itemValue="roupas" />
 					<f:selectItem itemLabel="Calçados" itemValue="calçados" />
 					<f:selectItem itemLabel="Acessórios" itemValue="acessórios" />
 				</p:selectOneMenu>
 
 			</h:panelGrid>
-			<p:commandButton value="Cadastrar Produto" />
+			<p:commandButton value="Cadastrar Produto" action="#{mbProduto.cadastrar}" ajax="true" update=":formcadastro"/>
 			<p:message for="formcadastro" />
 			<p:growl />
 		</h:form>
