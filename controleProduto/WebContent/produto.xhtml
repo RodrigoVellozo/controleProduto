@@ -28,9 +28,34 @@
 		</p:layoutUnit>
 
 		<p:layoutUnit position="center" header="Listagem dos  produtos">
-			<h:form>
+			<h:form id="formconsulta">
 			
-				<p:dataTable emptyMessage="Não há produtos cadastrados." >
+				<p:dataTable emptyMessage="Não há produtos cadastrados." paginator="true" rows="8" value="#{mbProduto.listagemProdutos}" var="linha">
+
+					<p:column headerText="Código">
+						<h:outputText value="#{linha.id}" />
+					</p:column>
+					<p:column headerText="Produto">
+						<h:outputText value="#{linha.nome}" />
+					</p:column>
+					<p:column headerText="Quantidade">
+						<h:outputText value="#{linha.quantidade}" />
+					</p:column>
+					<p:column headerText="Departamento">
+						<h:outputText value="#{linha.departamento}" />
+					</p:column>
+					<p:column headerText="Fabricação">
+						<h:outputText value="#{linha.dataFabricacao}">
+							<f:convertDateTime pattern="EE dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					
+					<p:column  headerText="Excluir" width="10%" style="text-align:center">
+						<p:commandButton icon="ui-icon-trash" action="#{mbProduto.excluir}" update=":formconsulta" ajax="true"/>
+						
+					</p:column>
+
+
 				</p:dataTable>
 
 				<p:commandButton value="Exibir relatório dos produtos" />
@@ -62,7 +87,7 @@
 				</p:selectOneMenu>
 
 			</h:panelGrid>
-			<p:commandButton value="Cadastrar Produto" action="#{mbProduto.cadastrar}" ajax="true" update=":formcadastro"/>
+			<p:commandButton value="Cadastrar Produto" action="#{mbProduto.cadastrar}" ajax="true" update=":formcadastro, :formconsulta"/>
 			<p:message for="formcadastro" />
 			<p:growl />
 		</h:form>

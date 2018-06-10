@@ -15,7 +15,7 @@ public class ProdutoDao {
 		em.persist(p);
 		em.getTransaction().commit();
 		em.close();
-		HibernateUtil.close();
+		
 	}
 	
 	public void merge(Produto p)throws Exception{
@@ -24,7 +24,7 @@ public class ProdutoDao {
 		em.merge(p);
 		em.getTransaction().commit();
 		em.close();
-		HibernateUtil.close();
+		
 	}
 	
 	public void remove(Produto p)throws Exception{
@@ -33,7 +33,7 @@ public class ProdutoDao {
 		em.remove(p);
 		em.getTransaction().commit();
 		em.close();
-		HibernateUtil.close();
+		
 	}
 	
 	public Produto findById(Integer id)throws Exception{
@@ -41,7 +41,6 @@ public class ProdutoDao {
 		em.getTransaction().begin();
 		Produto p = em.find(Produto.class, id);
 		em.close();
-		HibernateUtil.close();
 		return p;
 	}
 	
@@ -50,9 +49,17 @@ public class ProdutoDao {
 		em.getTransaction().begin();
 		List<Produto> lista = em.createNamedQuery("produto.findAll").getResultList();  
 		em.close();
-		HibernateUtil.close();
 		return lista;
 	}
 	
-	
+	public static void main(String[] args) {
+		try {
+
+			System.out.println(new ProdutoDao().findAll());
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
 }
